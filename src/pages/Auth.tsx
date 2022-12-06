@@ -64,10 +64,12 @@ function Auth() {
   };
 
   useEffect(() => {
+    if (localStorage.access_token) return navigate(ROUTEPATH.TODO);
+
     userInfo.email.includes('@') && userInfo.password.length >= 8
       ? setIsValid(false)
       : setIsValid(true);
-  }, [userInfo]);
+  }, [userInfo, navigate]);
 
   return (
     <div>
