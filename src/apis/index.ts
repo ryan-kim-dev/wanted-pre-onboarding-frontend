@@ -2,9 +2,6 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://pre-onboarding-selection-task.shop',
-  headers: {
-    Authorization: `Bearer ${localStorage.access_token}`,
-  },
 });
 
 const getTodos = async () => {
@@ -34,7 +31,11 @@ const updateTodo = async (
   data: { todo: string; isCompleted: boolean }
 ) => {
   try {
-    await axiosInstance.put(`todos/${id}`, data);
+    await axiosInstance.put(`todos/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     const response = getTodos();
     return response;
   } catch (err) {
@@ -46,7 +47,11 @@ const updateTodo = async (
 
 const deleteTodo = async (id: number) => {
   try {
-    await axiosInstance.delete(`todos/${id}`);
+    await axiosInstance.delete(`todos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     const response = getTodos();
     return response;
   } catch (err) {
