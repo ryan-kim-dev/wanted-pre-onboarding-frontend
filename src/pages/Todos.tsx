@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTEPATH } from '../constants';
 import axios from 'axios';
-import Todo from '../components/Todo';
+import * as S from './styles.Todo';
+import { Layout, Input, Button, Todo } from '../components';
 
 type TodoItemProps = {
   id: number;
@@ -57,23 +58,28 @@ function Todos() {
   }, [navigate]);
 
   return (
-    <div>
-      <div>
-        <span>할 일 추가하기</span>
+    <Layout>
+      <S.TodoHeader>
+        <S.Title>TODOS</S.Title>
         <form onSubmit={handleOnSubmit}>
-          <input
+          <Input
+            inputType="todo"
             type="text"
             name="todo"
             onChange={handleOnChange}
             value={inputValue}
           />
-          <button type="submit">추가</button>
+          <Button buttonType="confirm" type="submit">
+            추가
+          </Button>
         </form>
+      </S.TodoHeader>
+      <S.ListContainer>
         {todoList.map((item, idx) => (
           <Todo key={item.id} todoItem={item} setTodoList={setTodoList} />
         ))}
-      </div>
-    </div>
+      </S.ListContainer>
+    </Layout>
   );
 }
 

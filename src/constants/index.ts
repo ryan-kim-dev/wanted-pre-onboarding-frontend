@@ -1,2 +1,3 @@
+import { STYLES } from './styles';
 import { ROUTEPATH } from './routePath';
-export { ROUTEPATH };
+export { ROUTEPATH, STYLES };
