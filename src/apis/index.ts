@@ -6,7 +6,11 @@ const axiosInstance = axios.create({
 
 const getTodos = async () => {
   try {
-    const response = await axiosInstance.get('/todos');
+    const response = await axiosInstance.get('/todos', {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     return response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
