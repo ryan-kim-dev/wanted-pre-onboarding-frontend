@@ -1,9 +1,6 @@
 import styled, { css } from 'styled-components';
 import { STYLES } from '../constants';
-
-type InputProps = {
-  inputType: 'todo' | 'auth' | 'checkbox';
-};
+import { InputProps } from '../types';
 
 export const Input = styled.input<InputProps>`
   border-radius: ${STYLES.DEG};
