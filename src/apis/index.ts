@@ -9,7 +9,11 @@ const axiosInstance = axios.create({
 
 const getTodos = async () => {
   try {
-    const response = await axiosInstance.get('/todos');
+    const response = await axiosInstance.get('/todos', {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     return response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
@@ -20,7 +24,11 @@ const getTodos = async () => {
 
 const createTodo = async (id: number) => {
   try {
-    const response = await axiosInstance.post(`/todos/${id}`);
+    const response = await axiosInstance.post(`/todos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     return response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
@@ -34,7 +42,11 @@ const updateTodo = async (
   data: { todo: string; isCompleted: boolean }
 ) => {
   try {
-    await axiosInstance.put(`todos/${id}`, data);
+    await axiosInstance.put(`todos/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     const response = getTodos();
     return response;
   } catch (err) {

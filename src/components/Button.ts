@@ -1,9 +1,6 @@
 import styled, { css } from 'styled-components';
 import { STYLES } from '../constants';
-
-type ButtonProps = {
-  buttonType: 'cancel' | 'confirm';
-};
+import { ButtonProps } from '../types';
 
 export const Button = styled.button<ButtonProps>`
   border-radius: ${STYLES.DEG};
