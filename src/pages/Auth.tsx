@@ -6,7 +6,6 @@ import { Layout, Form } from '../components';
 import * as S from './styles.Auth';
 
 function Auth() {
-  // TODO: 로그인, 회원가입 api요청 함수 리팩토링시 apis 폴더로 분리
   const navigate = useNavigate();
   const [formType, setFormType] = useState('signup');
   const [isValid, setIsValid] = useState(true);
