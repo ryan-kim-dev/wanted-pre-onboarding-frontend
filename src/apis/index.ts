@@ -21,7 +21,11 @@ const getTodos = async () => {
 
 const createTodo = async (id: number) => {
   try {
-    const response = await axiosInstance.post(`/todos/${id}`);
+    const response = await axiosInstance.post(`/todos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
     return response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
