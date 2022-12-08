@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTEPATH } from '../constants';
-import axios from 'axios';
 import * as S from './styles.Todo';
 import { Layout, Input, Button, Todo } from '../components';
+import { getTodos, createTodo } from '../apis';
 
 type TodoItemProps = {
   id: number;
@@ -17,34 +17,14 @@ function Todos() {
   const [inputValue, setInputValue] = useState('');
   const [todoList, setTodoList] = useState<TodoItemProps[]>([]);
 
-  const getTodoList = () => {
-    axios
-      .get('https://pre-onboarding-selection-task.shop/todos', {
-        headers: {
-          Authorization: `Bearer ${localStorage.access_token}`,
-        },
-      })
-      .then(res => setTodoList(res.data))
-      .catch(err => alert(`${err}`));
-  };
-
-  const createTodoItem = (data: { todo: string }) => {
-    axios
-      .post('https://pre-onboarding-selection-task.shop/todos', data, {
-        headers: {
-          Authorization: `Bearer ${localStorage.access_token}`,
-        },
-      })
-      .then(res => setTodoList(prev => [...prev, res.data]))
-      .catch(err => alert(`${err}`));
-  };
-
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data: { todo: string } = {
       todo: inputValue,
     };
-    createTodoItem(data);
+    createTodo(data)
+      .then(res => setTodoList(prev => [...prev, res.data]))
+      .catch(err => alert(`${err}`));
     setInputValue('');
   };
 
@@ -54,7 +34,9 @@ function Todos() {
 
   useEffect(() => {
     if (!localStorage.access_token) return navigate(ROUTEPATH.ROOT);
-    getTodoList();
+    getTodos()
+      .then(res => setTodoList(res.data))
+      .catch(err => alert(`${err}`));
   }, [navigate]);
 
   return (
