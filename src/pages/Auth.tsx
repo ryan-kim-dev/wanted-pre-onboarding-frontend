@@ -6,7 +6,6 @@ import { Layout, Form } from '../components';
 import * as S from './styles.Auth';
 
 function Auth() {
-  // TODO: 로그인, 회원가입 api요청 함수 리팩토링시 apis 폴더로 분리
   const navigate = useNavigate();
   const [formType, setFormType] = useState('signup');
   const [isValid, setIsValid] = useState(true);
@@ -64,10 +63,14 @@ function Auth() {
       <S.AuthFormContainer>
         <S.BtnWrapper>
           <S.AuthChangeBtn onClick={() => setFormType('signup')}>
-            회원가입
+            <div id={formType === 'signup' ? 'active' : 'deactivate'}>
+              회원가입
+            </div>
           </S.AuthChangeBtn>
           <S.AuthChangeBtn onClick={() => setFormType('signin')}>
-            로그인
+            <div id={formType === 'signin' ? 'active' : 'deactivate'}>
+              로그인
+            </div>
           </S.AuthChangeBtn>
         </S.BtnWrapper>
         <Form
