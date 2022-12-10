@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTEPATH } from '../constants';
+import { TbLogout } from 'react-icons/tb';
 import * as S from './styles.Todo';
 import { Layout, Input, Button, Todo } from '../components';
 import { getTodos, createTodo } from '../apis';
@@ -39,10 +40,19 @@ function Todos() {
       .catch(err => alert(`${err}`));
   }, [navigate]);
 
+  const handleLogout = () => {
+    localStorage.clear();
+    return navigate(ROUTEPATH.ROOT);
+  };
+
   return (
     <Layout>
       <S.TodoHeader>
         <S.Title>TODOS</S.Title>
+        <S.LogoutDiv onClick={handleLogout}>
+          <TbLogout />
+          로그아웃
+        </S.LogoutDiv>
         <form onSubmit={handleOnSubmit}>
           <Input
             inputType="todo"
