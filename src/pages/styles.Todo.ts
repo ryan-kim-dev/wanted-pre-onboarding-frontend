@@ -15,6 +15,17 @@ export const TodoHeader = styled.header`
   padding: 1rem;
 `;
 
+export const LogoutDiv = styled.div`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Title = styled.h2`
   padding: 1rem;
   font-size: 30px;
