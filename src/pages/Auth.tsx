@@ -63,10 +63,14 @@ function Auth() {
       <S.AuthFormContainer>
         <S.BtnWrapper>
           <S.AuthChangeBtn onClick={() => setFormType('signup')}>
-            회원가입
+            <div id={formType === 'signup' ? 'active' : 'deactivate'}>
+              회원가입
+            </div>
           </S.AuthChangeBtn>
           <S.AuthChangeBtn onClick={() => setFormType('signin')}>
-            로그인
+            <div id={formType === 'signin' ? 'active' : 'deactivate'}>
+              로그인
+            </div>
           </S.AuthChangeBtn>
         </S.BtnWrapper>
         <Form

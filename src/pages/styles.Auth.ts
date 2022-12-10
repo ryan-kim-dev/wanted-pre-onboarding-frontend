@@ -24,12 +24,20 @@ export const AuthChangeBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   border-bottom: 1px solid ${STYLES.ACCENT};
   border-left: 1px solid ${STYLES.ACCENT};
   border-right: 1px solid ${STYLES.ACCENT};
 
-  :active {
+  div {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #active {
     background-color: ${STYLES.ACCENT};
+    color: #fff;
   }
 `;
