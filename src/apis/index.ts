@@ -1,3 +1,11 @@
 import { getTodos, createTodo, updateTodo, deleteTodo } from './todos';
+import { handleSignup, handleSignin } from './auth';
 
-export { getTodos, createTodo, updateTodo, deleteTodo };
+export {
+  handleSignup,
+  handleSignin,
+  getTodos,
+  createTodo,
+  updateTodo,
+  deleteTodo,
+};
