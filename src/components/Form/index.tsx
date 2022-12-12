@@ -1,19 +1,35 @@
 import { Button, Input } from '../index';
+import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
 import { FormProps } from '../../types';
+import { handleSignup, handleSignin } from '../../apis';
+import { ROUTEPATH } from '../../constants';
 
-function Form({
-  onChange,
-  userInfo,
-  isValid,
-  formType,
-  handleSignup,
-  handleSignin,
-}: FormProps) {
+function Form({ onChange, userInfo, isValid, formType }: FormProps) {
+  const navigate = useNavigate();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (formType === 'signup') {
+      handleSignup(userInfo).then(res => {
+        if (res.statusCode === 400) return alert(`${res.message}`);
+        const { access_token } = res.data;
+        localStorage.setItem('access_token', access_token);
+        return alert('정상적으로 회원가입되었습니다.');
+      });
+    }
+
+    if (formType === 'signin') {
+      handleSignin(userInfo).then(res => {
+        if (res.statusCode === 401)
+          return alert('이메일과 비밀번호를 다시 확인해주세요');
+        localStorage.access_token = res.data.access_token;
+        return navigate(ROUTEPATH.TODO);
+      });
+    }
+  };
+
   return (
-    <S.FormLayout
-      onSubmit={formType === 'signin' ? handleSignin : handleSignup}
-    >
+    <S.FormLayout onSubmit={handleSubmit}>
       <S.FormTitle>{formType === 'signin' ? 'LOG IN' : 'REGISTER'}</S.FormTitle>
       <S.InputLabel htmlFor="email">
         <span>email</span>
