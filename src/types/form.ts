@@ -6,6 +6,4 @@ export type FormProps = {
   };
   isValid: boolean;
   formType: string;
-  handleSignup: (e: React.ChangeEvent<HTMLFormElement>) => Promise<void>;
-  handleSignin: (e: React.ChangeEvent<HTMLFormElement>) => Promise<void>;
 };
