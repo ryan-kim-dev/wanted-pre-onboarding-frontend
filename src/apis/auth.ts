@@ -8,7 +8,7 @@ export const handleSignup = async (data: {
   try {
     const response = await axios.post(
       'https://pre-onboarding-selection-task.shop/auth/signup',
-      data
+      data,
     );
     return response;
   } catch (err) {
@@ -18,7 +18,7 @@ export const handleSignup = async (data: {
   }
 };
 
-/**로그인 요청 핸들러 함수 */
+/** 로그인 요청 핸들러 함수 */
 export const handleSignin = async (data: {
   email: string;
   password: string;
@@ -26,7 +26,7 @@ export const handleSignin = async (data: {
   try {
     const response = await axios.post(
       'https://pre-onboarding-selection-task.shop/auth/signin',
-      data
+      data,
     );
     return response;
   } catch (err) {

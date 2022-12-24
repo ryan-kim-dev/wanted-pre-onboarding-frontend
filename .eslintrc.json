@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "linebreak-style": "off",
+    "no-alert": "warn",
+    "import/prefer-default-export": ["off"],
+    "react/prop-types": ["off"],
+    "react/jsx-props-no-spreading": ["warn"],
+    "comma-dangle": ["error"],
+    "no-console": ["off"],
+    "react-hooks/exhaustive-deps": ["warn"],
+    "dot-notation": ["off"],
+    "consistent-return": ["off"],
+    "react/react-in-jsx-scope": ["off"],
+    "no-shadow": ["off"]
+  }
+}

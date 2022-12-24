@@ -36,7 +36,7 @@ export const createTodo = async (data: { todo: string }) => {
 
 export const updateTodo = async (
   id: number,
-  data: { todo: string; isCompleted: boolean }
+  data: { todo: string; isCompleted: boolean },
 ) => {
   try {
     await axiosInstance.put(`todos/${id}`, data, {
@@ -45,7 +45,7 @@ export const updateTodo = async (
       },
     });
     const response = getTodos();
-    return response;
+    return await response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       return err.response?.data;
@@ -61,7 +61,7 @@ export const deleteTodo = async (id: number) => {
       },
     });
     const response = getTodos();
-    return response;
+    return await response;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       return err.response?.data;
